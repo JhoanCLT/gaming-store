@@ -155,18 +155,18 @@ const Products = () => {
     <div className="min-h-screen py-8 bg-gray-50">
       <div className="px-4 mx-auto max-w-7xl">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col gap-4 mb-8 lg:flex-row lg:justify-between lg:items-center">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Productos Gaming</h1>
-            <p className="mt-2 text-gray-600">
+            <h1 className="text-2xl font-bold text-gray-900 lg:text-3xl">Productos Gaming</h1>
+            <p className="mt-2 text-sm text-gray-600 lg:text-base">
               Encuentra los mejores productos para tu setup gaming
             </p>
           </div>
-          
+
           {(user?.role === 'ADMIN' || user?.role === 'MANAGER') && (
             <button 
               onClick={openCreateModal}
-              className="flex items-center space-x-2 btn-primary"
+              className="flex items-center justify-center w-full space-x-2 btn-primary lg:w-auto"
             >
               <Plus className="w-4 h-4" />
               <span>Agregar Producto</span>
@@ -175,7 +175,7 @@ const Products = () => {
         </div>
 
         {/* Filtros y Búsqueda */}
-        <div className="mb-6 card">
+        <div className="grid grid-cols-1 gap-4 mb-4 sm:grid-cols-2 lg:grid-cols-4">
           {/* Búsqueda Básica */}
           <div className="flex flex-col gap-4 mb-4 md:flex-row">
             <form onSubmit={handleSearch} className="flex-1">

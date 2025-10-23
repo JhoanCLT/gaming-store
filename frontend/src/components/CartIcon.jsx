@@ -56,8 +56,8 @@ const CartIcon = () => {
 
       {/* Modal del carrito */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-end bg-black bg-opacity-50">
-          <div className="w-full h-full max-w-md overflow-y-auto bg-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+          <div className="bg-white w-full max-w-md max-h-[90vh] overflow-y-auto rounded-lg">
             <div className="p-4 border-b">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Carrito de Compras</h2>

@@ -12,6 +12,10 @@ export default {
           secondary: '#1e293b',
           accent: '#f59e0b'
         }
+      },
+      screens: {
+        'xs': '475px',
+        '3xl': '1600px',
       }
     },
   },

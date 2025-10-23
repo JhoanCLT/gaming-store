@@ -118,7 +118,7 @@ const Dashboard = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 mb-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="card">
             <div className="flex items-center">
               <div className="p-3 bg-blue-100 rounded-lg">
@@ -177,7 +177,7 @@ const Dashboard = () => {
         </div>
 
         {/* Gráficos */}
-        <div className="grid grid-cols-1 gap-6 mb-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 mb-8 xl:grid-cols-2">
           <SalesChart data={chartData} />
           <ProductsChart data={chartData} />
         </div>
