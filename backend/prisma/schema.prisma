@@ -1,0 +1,97 @@
+// Generador para el cliente de Prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Fuente de datos - PostgreSQL
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modelo de Usuario (CRM + Autenticación)
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      UserRole @default(CUSTOMER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relaciones (CRM)
+  sales     Sale[]
+  
+  @@map("users")
+}
+
+// Modelo de Producto (IMS - Inventory Management System)
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Float
+  stock       Int      @default(0)
+  category    String
+  image       String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relaciones (IMS)
+  sales       SaleItem[]
+  
+  @@map("products")
+}
+
+// Modelo de Venta (TPS - Transaction Processing System)
+model Sale {
+  id          String   @id @default(cuid())
+  total       Float
+  status      SaleStatus @default(COMPLETED)
+  paymentMethod PaymentMethod
+  createdAt   DateTime @default(now())
+  
+  // Relaciones (TPS + CRM)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items       SaleItem[]
+  
+  @@map("sales")
+}
+
+// Modelo de Items de Venta (ERP - Detalle transaccional)
+model SaleItem {
+  id        String  @id @default(cuid())
+  quantity  Int
+  price     Float
+  subtotal  Float
+  
+  // Relaciones
+  saleId    String
+  sale      Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  
+  @@map("sale_items")
+}
+
+// Enumeraciones para consistencia de datos
+enum UserRole {
+  ADMIN
+  MANAGER
+  CUSTOMER
+}
+
+enum SaleStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  TRANSFER
+  CRYPTO
+}

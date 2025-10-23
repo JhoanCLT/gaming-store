@@ -1,0 +1,14 @@
+{
+  "name": "gaming-store",
+  "version": "1.0.0",
+  "description": "Sistema completo de ventas para tienda gamer",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "db:push": "cd backend && npx prisma db push"
+  },
+  "keywords": ["TPS", "IMS", "CRM", "ERP", "CMS", "MIS"],
+  "author": "Tu Nombre",
+  "license": "MIT"
+}
